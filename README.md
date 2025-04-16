@@ -1,2 +1,79 @@
 # spring-mcp-demo
 MCP Demo application with Java spring ai, aws bedrock
+Job Search application is multi agentic which uses AWS bedrock for accessing models and uses direct Open AI models.
+It aces MCP client and connect to another Spring AI based MCP Server ( which in my case is employer system) for scheduling first round.
+
+
+API used for our job search engine application
+http://localhost:8080/gaurav/inquire?question=%22any%20position%20for%20swifterst%20developer?%22
+
+http://localhost:8080/gaurav/inquire?question=%22please%20tell%20me%20job%20description%20of%20swifterst%20developer?%22
+
+http://localhost:8080/gaurav/inquire?question=%22please%20submit%20my%20job%20application%20for%20swifterst%20developer%20and%20%20shedule%20screening%20round%20r?%22
+
+For MCP Use case
+
+http://localhost:8080/gaurav/inquire?question=%22scehdule%20first%20round%20of%20interview%22
+
+MCP server url
+http://localhost:8081
+
+I have used mysql database for creating database 
+
+create database myjobsearch;
+
+GRANT ALL PRIVILEGES ON myjobsearch.* TO 'root'@'localhost';
+
+USE myjobsearch;
+
+INSERT INTO job_postings (id, job_title, job_description) VALUES
+(1, 'Swift Developer', 'Technology whatever let. That bring she compare happen agent sign. Into us yeah news. Edge suffer at seven herself seven listen stuff. Might guess PM scene expect hot today. Arm television fast college prevent family.'),
+(2, 'AI Engineer', 'Agency drop rather yet himself. Goal win outside story I race. Quite body coach and receive allow. Manage word gun bit. Miss perform order child.'),
+(3, 'Penetration Tester', 'Involve human along suffer heart. Mr religious interesting feeling visit many chance. Push affect lead.'),
+(4, 'Backend Developer', 'More cell work likely usually probably. Man lose character discuss four. Their defense among old view likely. Different fall staff theory trouble one move. Left good involve only bring child a last. Pretty school spring.'),
+(5, 'Java Developer', 'Put certain PM citizen wall different agency. Bag guy only house by type. Behavior church theory benefit.'),
+(6, 'QA Engineer', 'Training several customer. Miss operation discover become. Project various personal just brother method take. Have bring value glass control yes.'),
+(7, 'Solutions Architect', 'Nice couple recently home. Paper section west sit. Perhaps professional stand represent speech really off. Plant worker become prevent no.'),
+(8, 'Data Engineer', 'Model official manager. Order control property long. Recognize same trouble reflect light material. Less rich finally take.'),
+(9, 'Machine Learning Engineer', 'Approach history wait reflect last direction even nearly. Group seven police report role explain window. Civil wall low require dream. Culture control answer action bed budget.'),
+(10, 'Node.js Developer', 'Arrive dark hot painting age run pretty trade. Bed us popular anything catch computer. Citizen he central policy benefit soon themselves. All ago difficult.'),
+(11, 'Software Architect', 'Modern performance glass chair few. Size gas other finally. Feel ago ability whatever partner window two. Speak blood born production allow media big. Partner serve let cell international pass. Successful tonight green thus possible know.'),
+(12, 'iOS Developer', 'Key class position herself evening visit contain couple. Significant phone middle will. Training live professor kid. Present within believe.'),
+(13, 'Android Developer', 'Serious image various instead that building boy. Trouble good trouble everybody seat. Partner test position give.'),
+(14, 'Automation Tester', 'Treatment author beyond at. Staff board food. Story say oil side. Camera hear forward attorney continue. Number can trade main likely experience.'),
+(15, 'Game Developer', 'Be time safe situation. Teach building west success. Lawyer early effect station material travel. Center particularly face past audience assume cup. Service every agreement us soldier finally production. Mr effort agent time life.'),
+(16, 'Python Developer', 'At join natural evidence item kind fine. Husband animal local force fact compare throughout. Design suffer tend fear idea nor.'),
+(17, 'QA Engineer', 'High next must. Sister car officer itself between source collection interview. Perhaps another by hot. Area woman decide never. Modern image crime little reason product every.'),
+(18, 'Platform Engineer', 'Issue effect agent begin institution. Blood country better drive example guess front research. Lay day blood policy. Teach only field enough.'),
+(19, 'Database Administrator', 'Group night true street move play issue. Develop room activity poor next similar skill. Production human lay guy commercial poor morning. Support kid leave talk. Very tonight then spend dark unit identify.'),
+(20, 'Integration Engineer', 'Maybe under me because. Nearly about matter. Entire light surface make under. Subject scientist form carry.'),
+(21, 'QA Engineer', 'Smile investment door red describe teach challenge. Require them ahead on do. Marriage read culture quickly scientist window us.'),
+(22, 'React Developer', 'Represent exist agency language ever individual. Look suddenly single difficult. Old board another own response throughout. Red up crime several run likely number age. Student go benefit might.'),
+(23, 'Big Data Engineer', 'Who direction cup hand step music push. Part mouth describe end history bar lawyer. Impact instead find their seek down want.'),
+(24, 'Kotlin Developer', 'Dog suggest American event computer somebody. Rate camera visit because. To plan executive next future. Citizen fall list smile blood improve space. Real media stay technology deep worry.'),
+(25, 'ETL Developer', 'Common watch it allow government past. Week source finally become expert side. Enjoy quality role until.'),
+(26, 'C++ Developer', 'Hundred me good lead western policy. Body very actually science economy. Something attack read. Close animal gun group outside. American difference color common indicate. International of candidate live defense whole computer claim.'),
+(27, 'Business Analyst', 'Mean old now agreement computer check. Home run paper enjoy. Finish fine kind reflect hear pressure. Century model student investment present the movement. Trip practice wear forward everyone investment pay.'),
+(28, 'Blockchain Developer', 'Affect through boy eight and mean reach. Training goal call. Doctor participant price while. Plant audience sense yard.'),
+(29, 'iOS Developer', 'Create camera necessary task according. Teach point reveal talk his political term. Certainly turn evidence prepare father old.'),
+(30, 'Automation Tester', 'Size relationship Democrat. Clearly fire guy. Energy baby community easy line heart its professor. Likely community avoid both. Provide case certain.'),
+(31, 'Solutions Architect', 'Coach his during guy war. Country then building down picture what may become. Attention nice bad camera over. Better miss program moment wall project it. Cold water thought.'),
+(32, '.NET Developer', 'Thank worry newspaper receive. Billion us same night. Response head their. Close identify arrive last.'),
+(33, 'Software Architect', 'Budget whether question everything. Always sing character since service one deal court. Base tend for describe where stage. Specific little store board continue protect. Population check money score environmental. South reach night.'),
+(34, 'UX Researcher', 'Policy put actually. Southern area start hour serve town. Sure else cause sell lose call.'),
+(35, 'Platform Engineer', 'Democratic charge anyone little. Wind themselves hospital author item. Attorney everyone music agent never social else much. Whose north happen movement.'),
+(36, 'Node.js Developer', 'Person partner human. Consumer see floor time. Majority court baby. Glass quite be which culture play.'),
+(37, 'Full Stack Developer', 'Write hospital station wind share type. Market population lose foreign. Hit among my. Mr stuff less easy hold second north.'),
+(38, 'Site Reliability Engineer', 'Score young now pressure report. High add image lose summer particularly. Husband knowledge off few. Sit two last if difficult industry also. Just food soon their notice certainly with. Whole management wind particular statement.'),
+(39, 'Android Developer', 'Only try two federal. Ten necessary many just language until. Society fund reduce test management color. Treatment radio hair much others. Traditional pick store owner him. Minute talk local owner.'),
+(40, 'Penetration Tester', 'Itself time about similar budget wear life. Consumer line lot. Stay open institution live purpose price. Social result teach stuff. Point partner conference. Page authority several attention tough stay shake.'),
+(41, 'Blockchain Developer', 'Investment suffer table almost. A arm off measure plant any. Top floor expert else sure civil.'),
+(42, 'iOS Developer', 'Push on letter next thing statement. Agency until look address morning strong financial eat. Model walk officer like develop. Mr describe decade once. Me program bag dog.'),
+(43, 'Database Administrator', 'Since low newspaper likely really. Keep trade rather think parent when. Bill positive director series amount. Because either practice speak former. Either able under heavy mention cold believe.'),
+(44, 'Unreal Engine Developer', 'Will team matter prove career with hair. Art contain policy build pressure above outside data. Picture better so sure morning become. Ability power soldier play see. Stay huge worry church evidence.'),
+(45, 'Database Administrator', 'The response probably. Understand how player hand spend. Fly win well try radio enjoy. To heavy think west. Site act state practice speech school.'),
+(46, 'Go Developer', 'No television possible few. Each off of. Blood that none on trial small my. Small beat economic view assume concern.'),
+(47, 'UX Researcher', 'Region blood miss reality order. Dream own place strong author responsibility guy business. Break drug seat receive management window.'),
+(48, 'DevOps Engineer', 'Everything successful challenge how. Congress test during week drive movement. Local summer able push night can. Tonight do sister anyone school information plan. List seem whether organization nearly stock. There rather our concern dog.'),
+(49, 'Integration Engineer', 'Maintain degree hotel sing plan center city center. Office us admit clearly describe. Strong ahead week marriage old western job. Deal talk arrive shoulder structure sound different. Or add result morning.'),
+(50, 'C# Developer', 'College too work large. Detail Mr music security view east decade hope. Safe artist new produce tough. Memory Republican pay fast back story begin. Loss company many effect. Move boy there soon author which smile however.');
